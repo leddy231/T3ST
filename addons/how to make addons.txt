@@ -1,0 +1,25 @@
+simple, drop any old ruby file in here and it will be loaded after the main window is set up
+
+
+
+To add a tile:
+make a class that extends Tile
+before initialize, override @name with your tiles full name
+def initalize (x, y, angle)
+super
+@image = your texture (for example Gosu::Image.new("textures/debug.png", {retro: true}),   all textures should use retro, and be 32x32 pixels)
+
+
+after this, call the newTile command and give it your class name (actual class name, not @name) and your prefered image, and add true after if your tile is rotateable
+done!
+
+
+
+options:
+@angle = angle to allow rotating your tile, dont forget to make your build image rotate and make sure to set solid edges correctly!
+mark which parts of your tile is solid by setting @sup @sdown @sleft or @sright to true 
+mark how your tile can use wire by setting @wup @wdown @wleft or @wright to true 
+set @w to true to activate wireing and allow conection, at runtime or when tile is created
+set @dwire to false to not draw default wireing
+you can override @wcore and @wire images to custom ones while still using default wire draw code (generators and storage units use a blank wire core and short wire! textures/blank.png and textures/wireSlantShort.png)
+set @dboarders to false to not draw boarders where not solid
